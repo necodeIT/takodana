@@ -12,14 +12,25 @@ enum TokenType {
   /// Used for italics and bold text.
   star,
 
-  /// A token that is a bracket (`[`) character.
-  ///
-  /// Acceptable values are: `[`, `]`, `(`, `)`,
-  ///
-  /// Used for links.
-  bracket,
+  /// A token that is an open bracket (`[`) character.
+  openBracket,
 
-  /// A token that is an equal sign (`==`).
+  /// A token that is a closed bracket (`]`) character.
+  closeBracket,
+
+  /// A token that is an open parenthesis (`(`) character.
+  openParenthesis,
+
+  /// A token that is a closed parenthesis (`)`) character.
+  closeParenthesis,
+
+  /// A token that is a
+  openCurlyBracket,
+
+  /// A token that is a (`}`) character.
+  closeCurlyBracket,
+
+  /// A token that is a equals sign (`=`) character.
   ///
   /// Used for highlighting.
   highlight,
@@ -36,14 +47,13 @@ enum TokenType {
 
   /// A token that is a bullet (`-`) character.
   ///
-  /// Acceptable values are:
-  ///   - For unordered lists
-  ///     - `-`, `*`
-  ///   - For ordered lists
-  ///     - `1.`, `2.`, `3.`, `4.`, `5.`, `6.`, `7.`, `8.`, `9.`, `10.`, ...
-  ///
-  /// Used for lists.
+  /// Used for unorderd lists.
   bullet,
+
+  /// A token that contains a list number (`1.`).
+  ///
+  /// Used for ordered lists.
+  listNumber,
 
   /// A token that is a fence (`` ` ``) character.
   ///
@@ -56,4 +66,22 @@ enum TokenType {
   ///
   /// Used for quotes.
   quote,
+
+  /// A token that is a tilde (`~`) character.
+  ///
+  /// Used for strikethrough (`~~`) or subscript (`~`).
+  tilde,
+
+  /// A token that is a caret (`^`) character.
+  ///
+  /// Used for superscript (`^`).
+  caret,
+
+  /// A token that is whitespace (` `) character.
+  ///
+  /// Used for indentation.
+  space,
+
+  /// A token that is a tab (`\t`) character.
+  tab
 }
