@@ -45,10 +45,10 @@ enum TokenType {
   /// A token that is a line break (`\n`) character.
   newLine,
 
-  /// A token that is a bullet (`-`) character.
+  /// A token that is a hyphen (`-`) character.
   ///
-  /// Used for unorderd lists.
-  bullet,
+  /// Used for unordered lists or horizontal rules.
+  hyphen,
 
   /// A token that contains a list number (`1.`).
   ///
@@ -83,5 +83,15 @@ enum TokenType {
   space,
 
   /// A token that is a tab (`\t`) character.
-  tab
+  tab,
+
+  /// A token that is a underscore (`_`) character.
+  ///
+  /// Used for italics and bold.
+  underscore,
+
+  /// A token that is an exclamation mark (`!`) character.
+  ///
+  /// Used for images.
+  exclamation,
 }

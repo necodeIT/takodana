@@ -27,6 +27,8 @@ abstract class SyntaxNode {
   ///
   /// Root nodes are the top-level nodes in the tree.
   /// They have no parent and no text.
+  ///
+  /// The 1st level [children] of represent the lines of the document.
   static SyntaxNode root() => _RootNode();
 
   /// The parent node of this node.
@@ -35,9 +37,14 @@ abstract class SyntaxNode {
   SyntaxNode get parent => _parent!;
 
   /// Whether this node is the root node of the tree.
+  ///
+  /// If this node is the root node, it has no parent and no text.
+  /// Also every child (1st level) of this node is a new line in the document.
   bool get isRoot => _isRoot;
 
   /// Returns the root node of the tree.
+  ///
+  /// The root node's 1st level children are the lines of the document.
   SyntaxNode findRoot() => isRoot ? this : parent.findRoot();
 
   StringBuffer _toStringRecursive([int depth = 0, StringBuffer? buffer]) {

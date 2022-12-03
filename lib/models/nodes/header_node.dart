@@ -13,7 +13,7 @@ class HeaderNode extends SyntaxNode {
   /// Creates a new [HeaderNode].
   ///
   /// e.g. `# Header 1`
-  HeaderNode(String text, this.level) : super(text);
+  HeaderNode(String text, {required this.level}) : super(text);
 
   @override
   String _paramsToString() => level.toString();

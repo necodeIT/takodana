@@ -44,7 +44,10 @@ class TokenizerService extends ITokenizerService {
           tokens.add(Token(value: char, type: TokenType.highlight));
           break;
         case '-':
-          tokens.add(Token(value: char, type: TokenType.bullet));
+          tokens.add(Token(value: char, type: TokenType.hyphen));
+          break;
+        case '!':
+          tokens.add(Token(value: char, type: TokenType.exclamation));
           break;
         case ' ':
           tokens.add(Token(value: char, type: TokenType.space));
@@ -57,6 +60,9 @@ class TokenizerService extends ITokenizerService {
           break;
         case '`':
           tokens.add(Token(value: char, type: TokenType.fence));
+          break;
+        case '_':
+          tokens.add(Token(value: char, type: TokenType.underscore));
           break;
         case '\r':
         case '\n':
