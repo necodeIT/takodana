@@ -10,7 +10,6 @@ class TokenizerService extends ITokenizerService {
 
     for (var i = 0; i < input.length; i++) {
       var char = input[i];
-      var nextChar = i + 1 < input.length ? input[i + 1] : null;
 
       switch (char) {
         case '#':
@@ -59,7 +58,7 @@ class TokenizerService extends ITokenizerService {
           tokens.add(Token(value: char, type: TokenType.caret));
           break;
         case '`':
-          tokens.add(Token(value: char, type: TokenType.fence));
+          tokens.add(Token(value: char, type: TokenType.backtick));
           break;
         case '_':
           tokens.add(Token(value: char, type: TokenType.underscore));

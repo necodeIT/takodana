@@ -17,7 +17,7 @@ abstract class ITokenizerService {
     for (var i = 0; i < tokens.length; i++) {
       var token = tokens[i];
 
-      if (token.type == TokenType.text || (token.type == TokenType.space && text.isNotEmpty)) {
+      if (token.type == TokenType.text || (token.isSpace && text.isNotEmpty)) {
         text += token.value;
       } else {
         if (text.isNotEmpty) {

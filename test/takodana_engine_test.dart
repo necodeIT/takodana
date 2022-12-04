@@ -2,10 +2,11 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:takodana_engine/takodana_engine.dart';
 
 void main() {
-  var sample = '''
+  group("Parsing", () {
+    var sample = '''
 # Header
 ## Subheader
-### Subsubheader
+### *Subsubheader*
 - Bullet
   - Bullet 2
     - Bullet 3
@@ -17,10 +18,26 @@ void main() {
 [Link](https://google.com)
 ''';
 
-  test("Tokenizer test", () {
-    var tokenizer = TokenizerService();
-    var tokens = tokenizer.tokenize(sample);
+    test("Tokenizer", () {
+      var tokenizer = TokenizerService();
+      var tokens = tokenizer.tokenize(sample);
 
-    print(tokens);
+      print(tokens);
+
+      expect(tokens.length, 61);
+    });
+
+    test('AST', () {
+      var tokenizer = TokenizerService();
+      var tokens = tokenizer.tokenize(sample);
+
+      print(tokens);
+
+      var parser = ParserService();
+
+      var ast = parser.parse(tokens);
+
+      print(ast);
+    });
   });
 }

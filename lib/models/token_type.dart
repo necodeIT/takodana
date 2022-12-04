@@ -55,12 +55,12 @@ enum TokenType {
   /// Used for ordered lists.
   listNumber,
 
-  /// A token that is a fence (`` ` ``) character.
+  /// A token that is a backtick (`` ` ``) character.
   ///
   /// Acceptable values are: `` ` ``, `` ``` ``
   ///
   /// Used for code blocks (inline and multiline).
-  fence,
+  backtick,
 
   /// A token that is quote (`>`) character.
   ///
