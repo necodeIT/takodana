@@ -28,10 +28,11 @@ void main() {
     });
 
     test('AST', () {
+      var sample = '''
+## Header deine mom
+''';
       var tokenizer = TokenizerService();
       var tokens = tokenizer.tokenize(sample);
-
-      print(tokens);
 
       var parser = ParserService();
 

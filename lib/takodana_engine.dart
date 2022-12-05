@@ -1,6 +1,9 @@
 library takodana_engine;
 
+export 'package:takodana_engine/services/parser/parser_service.dart';
+
 import 'package:riverpod/riverpod.dart';
+import 'package:takodana_engine/services/parser/parser_service.dart';
 
 /// Models
 
@@ -28,6 +31,5 @@ part 'models/nodes/image_node.dart';
 part 'services/tokenizer/interface.dart';
 part 'services/tokenizer/tokenizer_service.dart';
 part 'services/parser/interface.dart';
-part 'services/parser/parser_service.dart';
 
 /// Providers

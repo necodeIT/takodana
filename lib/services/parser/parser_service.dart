@@ -1,9 +1,16 @@
-part of takodana_engine;
+import 'package:takodana_engine/takodana_engine.dart';
+
+part 'parser_service_star.dart';
+part 'parser_service_helpers.dart';
+part 'parser_service_header.dart';
 
 class ParserService extends IParserService {
+  int _pointer = 0;
+  List<Token> _line = [];
+
   @override
-  parse(tokens, [root]) {
-    root ??= SyntaxNode.root();
+  parse(tokens) {
+    SyntaxNode root = SyntaxNode.root();
 
     var lines = <List<Token>>[[]];
 
@@ -18,75 +25,30 @@ class ParserService extends IParserService {
       }
     }
 
-    for (var line in lines) {
-      for (var pointer = 0; pointer < line.length; pointer++) {
-        bool hasNext() => pointer + 1 < line.length;
-        Token next() => line[pointer + 1];
-
-        var token = line[pointer];
-
-        /// Check for header
-        if (token.isHeader && pointer == 0) {
-          var level = 1;
-
-          // count the number of #s  (level)
-          while (hasNext() && next().isHeader) {
-            level++;
-            pointer++;
-          }
-
-          /// Check if valid header
-          if (level <= 6 && hasNext() && next().isSpace) {
-            var header = HeaderNode("", level: level);
-
-            pointer++;
-
-            // parse the header text
-            root.addChild(parse(line.sublist(pointer), header));
-          } else {
-            var text = PlainTextNode(token.value * level);
-
-            root.addChild(parse(line.sublist(pointer), text));
-          }
-
-          break;
-        }
-
-        if (token.isText) {
-          root.addChild(PlainTextNode(token.value));
-        }
-
-        // Check for stars
-        if (token.isStar) {
-          var pre = line.sublist(0, pointer);
-
-          // Check if it's a bullet
-          // it's a bullet if there's
-          //  - no text before the star
-          //  - a space after the star
-          if (hasNext() && next().isSpace) {
-            var isWhiteSpace = true;
-
-            // Check if there's any text before the star
-            for (var i = 0; i < pre.length; i++) {
-              if (!pre[i].isSpace) {
-                isWhiteSpace = false;
-                break;
-              }
-            }
-
-            if (isWhiteSpace) {
-              var bullet = BulletNode("", level: pre.length ~/ 2);
-
-              pointer++;
-
-              root.addChild(parse(line.sublist(pointer), bullet));
-            }
-          }
-        }
-      }
+    for (_line in lines) {
+      _parseLine(_line, root);
     }
 
     return root;
   }
+
+  _parseLine(Line line, SyntaxNode root) {
+    for (_pointer; _pointer < _line.length; _pointer++) {
+      var token = _line[_pointer];
+
+      /// Check for header
+      if (token.isHeader && _pointer == 0) parseHeader(root);
+
+      if (token.isText) {
+        root.addChild(PlainTextNode(token.value));
+      }
+
+      // Check for stars
+      if (token.isStar) parseStar(root);
+    }
+
+    _pointer = 0;
+  }
 }
+
+typedef Line = List<Token>;
