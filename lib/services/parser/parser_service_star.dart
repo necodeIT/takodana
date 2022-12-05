@@ -33,25 +33,36 @@ extension _Star on ParserService {
     //  - are two stars before the text
     //  - are two stars after the text
     //  - are whitespaces after the first two stars
-    if (hasNext() && next().isStar && _pointer + 2 < _line.length && !_line[_pointer + 2].isSpace) {
+    if (hasNext() &&
+        next().isStar &&
+        _pointer + 2 < _line.length &&
+        !_line[_pointer + 2].isSpace) {
       var isBold = true;
+      var i = _pointer + 2;
 
-      // Check if there's whitespaces after the first two stars
-      if (isBold) {
-        for (var i = pre.length - 3; i >= 0; i--) {
-          if (!pre[i].isSpace) {
+      for (i; i < _line.length; i++) {
+        if (_line[i].isStar) {
+          if (i + 1 < _line.length && _line[i + 1].isStar) {
+            break;
+          } else {
             isBold = false;
             break;
           }
         }
       }
 
+      ///// IS BULLSHIT (hilfe) /////
+      // Unendliche Schleife dies das mies das
+      //TODO: FIX THIS
+
       if (isBold) {
-        var bold = BoldNode();
+        var parent = root.isRoot ? root : PlainTextNode("");
+        var bold = BoldNode("");
 
         _pointer += 2;
 
-        root.addChild(_parseLine(_line.sublist(_pointer), bold));
+        parent.addChild(_parseLine(_line.sublist(0, i), bold));
+        parent.addChild(_parseLine(_line.sublist(i + 2), bold.parent));
       }
     }
   }
