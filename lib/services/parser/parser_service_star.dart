@@ -33,10 +33,7 @@ extension _Star on ParserService {
     //  - are two stars before the text
     //  - are two stars after the text
     //  - are whitespaces after the first two stars
-    if (hasNext() &&
-        next().isStar &&
-        _pointer + 2 < _line.length &&
-        !_line[_pointer + 2].isSpace) {
+    if (hasNext() && next().isStar && hasNext(2) && !next(2).isSpace) {
       var isBold = true;
       var i = _pointer + 2;
 
@@ -51,18 +48,17 @@ extension _Star on ParserService {
         }
       }
 
-      ///// IS BULLSHIT (hilfe) /////
-      // Unendliche Schleife dies das mies das
-      //TODO: FIX THIS
-
       if (isBold) {
-        var parent = root.isRoot ? root : PlainTextNode("");
+        var parent = root.isRoot ? root.addChild(PlainTextNode("")) : root;
+
         var bold = BoldNode("");
 
         _pointer += 2;
 
         parent.addChild(_parseLine(_line.sublist(0, i), bold));
-        parent.addChild(_parseLine(_line.sublist(i + 2), bold.parent));
+        _pointer = i + 2;
+
+        _parseLine(_line, parent);
       }
     }
   }

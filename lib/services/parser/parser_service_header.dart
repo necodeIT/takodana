@@ -25,6 +25,6 @@ extension _Header on ParserService {
       root.addChild(_parseLine(_line, text));
     }
 
-    consumerLine();
+    consumeLine();
   }
 }

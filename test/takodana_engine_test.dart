@@ -29,8 +29,12 @@ void main() {
 
     test('AST', () {
       var sample = '''
-## Header deine mom
+## Header test **sdasd**
+* Bullet
+  * Bullet **2**
+    * Bullet 3
 ''';
+
       var tokenizer = TokenizerService();
       var tokens = tokenizer.tokenize(sample);
 

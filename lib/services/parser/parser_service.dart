@@ -27,12 +27,13 @@ class ParserService extends IParserService {
 
     for (_line in lines) {
       _parseLine(_line, root);
+      _pointer = 0;
     }
 
     return root;
   }
 
-  _parseLine(Line line, SyntaxNode root) {
+  SyntaxNode _parseLine(Line line, SyntaxNode root) {
     for (_pointer; _pointer < _line.length; _pointer++) {
       var token = _line[_pointer];
 
@@ -47,7 +48,7 @@ class ParserService extends IParserService {
       if (token.isStar) parseStar(root);
     }
 
-    _pointer = 0;
+    return root;
   }
 }
 
