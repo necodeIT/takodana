@@ -87,6 +87,16 @@ abstract class SyntaxNode {
   String toString() => _toStringRecursive().toString();
 }
 
+/// A node that does not hold any text.
+///
+/// This is only used for nodes who are only used to provide metadata of their children.
+class MetaNode extends SyntaxNode {
+  /// A node that does not hold any text.
+  ///
+  /// This is only used for nodes who are only used to provide metadata of their children.
+  MetaNode() : super("");
+}
+
 class _RootNode extends SyntaxNode {
   _RootNode() : super("", true);
 }

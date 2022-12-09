@@ -25,6 +25,7 @@ part 'models/nodes/code_node.dart';
 part 'models/nodes/subscript_node.dart';
 part 'models/nodes/link_node.dart';
 part 'models/nodes/image_node.dart';
+part 'models/nodes/paragraph_node.dart';
 
 /// Services
 ///

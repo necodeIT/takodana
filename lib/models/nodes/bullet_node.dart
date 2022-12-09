@@ -3,7 +3,7 @@ part of takodana_engine;
 /// BulletNode is a [SyntaxNode] that represents a bulletpoint.
 ///
 /// e.g. `- bulletpoint` or `* bulletpoint`
-class BulletNode extends SyntaxNode {
+class BulletNode extends MetaNode {
   /// The level of the bulletpoint
   ///
   /// ---
@@ -18,7 +18,7 @@ class BulletNode extends SyntaxNode {
   /// Creates a new [BulletNode]
   ///
   /// e.g. `- bulletpoint` or `* bulletpoint`
-  BulletNode(String text, {required this.level}) : super(text);
+  BulletNode({required this.level}) : super();
 
   @override
   String _paramsToString() => level.toString();
