@@ -28,13 +28,9 @@ extension _OpenBracket on ParserService {
         root.addChild(link);
 
         _pointer = closingParenthesisIndex + 1;
-      } else {
-        var text = PlainTextNode(line[_pointer].value);
-        _pointer++;
-        root.addChild(_parseLine(line, text));
-      }
 
-      return;
+        return;
+      }
     }
 
     // if it's neither of the above, it's just plain text

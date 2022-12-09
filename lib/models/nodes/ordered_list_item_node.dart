@@ -3,7 +3,7 @@ part of takodana_engine;
 /// OrderListItemNode is a [SyntaxNode] that represents a ordered list item.
 ///
 /// e.g. `1. ordered list item`
-class OrderListItemNode extends SyntaxNode {
+class OrderdListItemNode extends SyntaxNode {
   /// The level of the ordered list item
   ///
   /// - `1. ordered list item` has a level of 1.
@@ -19,7 +19,7 @@ class OrderListItemNode extends SyntaxNode {
   /// Creates a new [OrderListItemNode].
   ///
   /// e.g. `1. ordered list item`
-  OrderListItemNode(String text, {required this.level, required this.number, required}) : super(text);
+  OrderdListItemNode(String text, {required this.level, required this.number, required}) : super(text);
 
   @override
   String _paramsToString() => '$level.$number';

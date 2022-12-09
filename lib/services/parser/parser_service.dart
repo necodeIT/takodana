@@ -35,8 +35,18 @@ class ParserService extends IParserService {
     }
 
     for (var line in lines) {
-      _parseLine(line, root);
+      var result = _parseLine(line, root.addChild(ParagraphNode()));
       _pointer = 0;
+
+      if (result.children.length > 1) continue;
+
+      if (result.children.isEmpty) {
+        root.children.remove(result);
+        continue;
+      }
+
+      root.children.remove(result);
+      root.addChild(result.children.first);
     }
 
     return root;
@@ -46,10 +56,8 @@ class ParserService extends IParserService {
     for (_pointer; _pointer < line.length; _pointer++) {
       var token = line[_pointer];
 
-      /// Check for header
+      // Check for header
       if (token.isHeader && _pointer == 0) parseHeader(root, line);
-
-      if (token.isText) root.addChild(PlainTextNode(token.value));
 
       // Check for stars
       if (token.isStar) parseStar(root, line);
@@ -63,13 +71,27 @@ class ParserService extends IParserService {
       // Check for exclamation mark
       if (token.isExclamationMark) parseExclamationMark(root, line);
 
-      if (token.isCloseBracket) root.addChild(PlainTextNode(token.value));
+      if (token.isCloseBracket || token.isText || token.isOpenParenthesis || token.isCloseParenthesis || token.isSpace) {
+        root.addChild(PlainTextNode(token.value));
+      }
+    }
 
-      if (token.isOpenParenthesis) root.addChild(PlainTextNode(token.value));
+    // get index of the first non-space node
+    var index = root.children.indexWhere((e) => !(e is PlainTextNode && e.text == " "));
 
-      if (token.isCloseParenthesis) root.addChild(PlainTextNode(token.value));
+    if (index == -1 || index == 0) return root;
 
-      if (token.isSpace) root.addChild(PlainTextNode(token.value));
+    // Get all spaces at the beginning of the line
+    var spaces = root.children.takeWhile((e) => e is PlainTextNode && e.text == " ").toList();
+
+    var node = root.children[index];
+
+    // check if the first non-space node is node, that disallows spaces at the beginning of the line (e.g. bullet node)
+    if (node is BulletNode || node is OrderdListItemNode) {
+      // omit disallowed spaces
+      for (var e in spaces) {
+        root.children.remove(e);
+      }
     }
 
     return root;

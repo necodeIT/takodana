@@ -49,16 +49,13 @@ extension _Star on ParserService {
 
       if (potentialClosers.isNotEmpty) {
         i = potentialClosers.last;
-        var parent = root.isRoot ? root.addChild(ParagraphNode()) : root;
-
-        var bold = BoldNode();
 
         _pointer += 2;
 
-        parent.addChild(_parseLine(line.sublist(0, i), bold));
+        root.addChild(_parseLine(line.sublist(0, i), BoldNode()));
         _pointer = i + 2;
 
-        _parseLine(line, parent);
+        _parseLine(line, root);
       }
 
       return;
@@ -82,16 +79,13 @@ extension _Star on ParserService {
 
       if (potentialClosers.isNotEmpty) {
         i = potentialClosers.last;
-        var parent = root.isRoot ? root.addChild(ParagraphNode()) : root;
-
-        var italic = ItalicNode();
 
         _pointer++;
 
-        parent.addChild(_parseLine(line.sublist(0, i), italic));
+        root.addChild(_parseLine(line.sublist(0, i), ItalicNode()));
         _pointer = i + 1;
 
-        _parseLine(line, parent);
+        _parseLine(line, root);
       }
 
       return;

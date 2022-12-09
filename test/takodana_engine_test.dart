@@ -19,9 +19,9 @@ void main() {
 `Fence`
 [Link](https://google.com)
 [Not a link] (https://google.com)
- ![img](https://preview.redd.it/bnhlv4c2mtk61.jpg?width=640&crop=smart&auto=webp&s=39dc78bb3d04b2be63699536d304f460473667ff)
+![img](https://preview.redd.it/bnhlv4c2mtk61.jpg?width=640&crop=smart&auto=webp&s=39dc78bb3d04b2be63699536d304f460473667ff)
 ! [not an img but a link](https://preview.redd.it/bnhlv4c2mtk61.jpg?width=640&crop=smart&auto=webp&s=39dc78bb3d04b2be63699536d304f460473667ff)
-2 - 3 = -1
+  2 - 3 = -1 *sdasd* **sdasdas** [Link](https://google.com)
 ''';
 
     test("Tokenizer", () {
