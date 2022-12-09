@@ -3,7 +3,7 @@ part of takodana_engine;
 /// LinkNode is a [SyntaxNode] that represents a link
 ///
 /// e.g. `[donate](https://cutt.ly/A1JX87v)`
-class LinkNode extends SyntaxNode {
+class LinkNode extends MetaNode {
   /// The url or file path of the link.
   ///
   /// ---
@@ -18,7 +18,7 @@ class LinkNode extends SyntaxNode {
   /// Creates a new [LinkNode].
   ///
   /// e.g. `[donate](https://cutt.ly/A1JX87v)`
-  LinkNode(String text, {required this.href}) : super(text);
+  LinkNode({required this.href}) : super();
 
   @override
   String _paramsToString() => href;

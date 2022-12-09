@@ -2,6 +2,8 @@ library takodana_engine;
 
 export 'package:takodana_engine/services/parser/parser_service.dart';
 
+import 'dart:collection';
+
 import 'package:riverpod/riverpod.dart';
 import 'package:takodana_engine/services/parser/parser_service.dart';
 
@@ -26,9 +28,10 @@ part 'models/nodes/subscript_node.dart';
 part 'models/nodes/link_node.dart';
 part 'models/nodes/image_node.dart';
 part 'models/nodes/paragraph_node.dart';
+part 'models/token_pattern.dart';
+part 'models/document_line.dart';
 
 /// Services
-///
 part 'services/tokenizer/interface.dart';
 part 'services/tokenizer/tokenizer_service.dart';
 part 'services/parser/interface.dart';

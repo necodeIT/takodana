@@ -59,7 +59,7 @@ class Token {
   bool get isHyphen => type == TokenType.hyphen;
 
   /// Whether [this] token is of [TokenType.exclamation].
-  bool get isExclamation => type == TokenType.exclamation;
+  bool get isExclamationMark => type == TokenType.exclamation;
 
   /// Whether [this] token is of [TokenType.space].
   bool get isSpace => type == TokenType.space;

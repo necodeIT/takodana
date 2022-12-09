@@ -80,9 +80,10 @@ class TokenizerService extends ITokenizerService {
         case '8':
         case '9':
           var number = char;
-          var nextChar = i + 1 < input.length ? input[i + 1] : null;
+          String? getNextChar() => i + 1 < input.length ? input[i + 1] : null;
 
-          while (nextChar != null) {
+          while (getNextChar() != null) {
+            var nextChar = getNextChar()!;
             if (nextChar == '.') {
               number += nextChar;
               i++;
