@@ -15,7 +15,7 @@ extension _Header on ParserService {
     if (level <= 6 && line.hasNext() && line.next().isSpace) {
       var header = HeaderNode(level: level);
 
-      _pointer++;
+      _pointer += 2;
 
       // parse the header text
       root.addChild(_parseLine(line, header));
