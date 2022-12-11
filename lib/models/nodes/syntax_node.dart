@@ -90,10 +90,14 @@ abstract class SyntaxNode {
 /// A node that does not hold any text.
 ///
 /// This is only used for nodes who are only used to provide metadata of their children.
-class MetaNode extends SyntaxNode {
+///
+/// e.g. [BulletNode] is a [MetaNode] because it does not hold any text but the children do.
+abstract class MetaNode extends SyntaxNode {
   /// A node that does not hold any text.
   ///
   /// This is only used for nodes who are only used to provide metadata of their children.
+  ///
+  /// e.g. [BulletNode] is a [MetaNode] because it does not hold any text but the children do.
   MetaNode() : super("");
 }
 
