@@ -23,6 +23,7 @@ void main() {
 ![img](https://preview.redd.it/bnhlv4c2mtk61.jpg?width=640&crop=smart&auto=webp&s=39dc78bb3d04b2be63699536d304f460473667ff)
 ! [not an img but a link](https://preview.redd.it/bnhlv4c2mtk61.jpg?width=640&crop=smart&auto=webp&s=39dc78bb3d04b2be63699536d304f460473667ff)
   2 - 3 = -1 *sdasd* **sdasdas** [Link](https://google.com)
+==Highlight== > sdfsfsdfsdf
 ''';
 
     test("Tokenizer", () {
@@ -91,7 +92,8 @@ void mesurePerformance(String sample) {
   totalTime += stopwatch.elapsed.inMilliseconds;
   print('Parsing took ${stopwatch.elapsed.inMilliseconds}ms');
 
-  print('Total time: ${totalTime}ms for ${words.length} words (${words.length / totalTime} words/ms) ');
+  print(
+      'Total time: ${totalTime}ms for ${words.length} words (${words.length / totalTime} words/ms) ');
 }
 
 /// Retrieves documents from https://jaspervdj.be/lorem-markdownum/markdown-html.html
@@ -106,9 +108,15 @@ Future<String> getDocument(int size) async {
   for (var i = 0; i < size; i++) {
     final response = await get(uri);
 
-    if (response.statusCode != 200) throw Exception({'Failed to get document': response.statusCode, 'body': response.body});
+    if (response.statusCode != 200)
+      throw Exception({
+        'Failed to get document': response.statusCode,
+        'body': response.body
+      });
 
-    var document = response.body.replaceAll('<pre class="markdown">', "").split('</pre>')[0];
+    var document = response.body
+        .replaceAll('<pre class="markdown">', "")
+        .split('</pre>')[0];
 
     documents += document;
   }
